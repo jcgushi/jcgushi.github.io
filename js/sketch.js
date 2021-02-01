@@ -1,19 +1,27 @@
-let song;
+let sound, amplitude;
 
-
+function preload(){
+  sound = loadSound('media/doorbell.mp3');
+}
 function setup() {
-  song = loadSound('media/Amy.mp3');
-  createCanvas(720, 200);
-  background(255, 0, 0);
+  let cnv = createCanvas(100,100);
+  cnv.mouseClicked(toggleSound);
+  amplitude = new p5.Amplitude();
 }
 
-function mousePressed() {
-  if (song.isPlaying()) {
-    // .isPlaying() returns a boolean
-    song.stop();
-    background(255, 0, 0);
+function draw() {
+  background(220);
+  text('tap to play', 20, 20);
+
+  let level = amplitude.getLevel();
+  let size = map(level, 0, 1, 0, 200);
+  ellipse(width/2, height/2, size, size);
+}
+
+function toggleSound() {
+  if (sound.isPlaying() ){
+    sound.stop();
   } else {
-    song.play();
-    background(0, 255, 0);
+    sound.play();
   }
 }
