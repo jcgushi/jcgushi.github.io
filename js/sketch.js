@@ -1,7 +1,7 @@
 let sound, amplitude;
 
 function preload(){
-  sound = loadSound('media/doorbell.mp3');
+  sound = loadSound('media/Amy.mp3');
 }
 function setup() {
   let cnv = createCanvas(100,100);
